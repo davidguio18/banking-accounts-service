@@ -1,3 +1,46 @@
 spring:
   application:
-    name: accounts-service
+    name: banking-accounts-service
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/banking_accounts_db}
+    username: postgres
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        default_schema: accounts
+        format_sql: true
+  rabbitmq:
+    host: ${RABBITMQ_HOST:localhost}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USERNAME:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+  amqp:
+    deserialization:
+      trust:
+        all: false
+server:
+  port: ${SERVER_PORT:8082}
+  servlet:
+    context-path: /api
+
+customers:
+  service:
+    base-url: http://localhost:8081/api
+
+messaging:
+  customers:
+    exchange: ${CUSTOMERS_EXCHANGE:customers.events}
+    queue: ${CUSTOMERS_QUEUE:accounts.customers.events}
+    created-routing-key: ${CUSTOMER_CREATED_ROUTING_KEY:customer.created}
+    status-routing-key: ${CUSTOMER_STATUS_ROUTING_KEY:customer.status.changed}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health

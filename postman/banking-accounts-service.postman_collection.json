@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "f77c7439-bb55-4bb0-a7c9-46ae1b8c5c24",
+    "name": "banking-accounts-service",
+    "description": "Operaciones CRUD/CRU, movimientos y reporte del microservicio de cuentas.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:8082/api" },
+    { "key": "clienteId", "value": "2" },
+    { "key": "cuentaId", "value": "1" },
+    { "key": "movimientoId", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Cuentas",
+      "item": [
+        {
+          "name": "Crear cuenta",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"clienteId\": {{clienteId}},\n  \"saldoInicial\": 100.00\n}" },
+            "url": "{{baseUrl}}/cuentas"
+          }
+        },
+        { "name": "Listar cuentas", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas" } },
+        { "name": "Listar cuentas por cliente", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas?clienteId={{clienteId}}" } },
+        { "name": "Consultar cuenta", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas/{{cuentaId}}" } },
+        {
+          "name": "Actualizar cuenta",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"CORRIENTE\"\n}" },
+            "url": "{{baseUrl}}/cuentas/{{cuentaId}}"
+          }
+        },
+        {
+          "name": "Desactivar cuenta",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"estado\": false }" },
+            "url": "{{baseUrl}}/cuentas/{{cuentaId}}/estado"
+          }
+        },
+        {
+          "name": "Activar cuenta",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"estado\": true }" },
+            "url": "{{baseUrl}}/cuentas/{{cuentaId}}/estado"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Movimientos",
+      "item": [
+        {
+          "name": "Registrar depósito",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 600.00,\n  \"descripcion\": \"Depósito de prueba\"\n}" },
+            "url": "{{baseUrl}}/movimientos"
+          }
+        },
+        {
+          "name": "Registrar retiro",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": -575.00,\n  \"descripcion\": \"Retiro de prueba\"\n}" },
+            "url": "{{baseUrl}}/movimientos"
+          }
+        },
+        {
+          "name": "Saldo insuficiente",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": -999999.00,\n  \"descripcion\": \"Debe responder 422\"\n}" },
+            "url": "{{baseUrl}}/movimientos"
+          }
+        },
+        { "name": "Listar movimientos", "request": { "method": "GET", "url": "{{baseUrl}}/movimientos" } },
+        { "name": "Consultar movimiento", "request": { "method": "GET", "url": "{{baseUrl}}/movimientos/{{movimientoId}}" } },
+        {
+          "name": "Actualizar movimiento",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 50.00,\n  \"descripcion\": \"Movimiento corregido\"\n}" },
+            "url": "{{baseUrl}}/movimientos/{{movimientoId}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "Reporte de estado de cuenta",
+          "request": {
+            "method": "GET",
+            "url": "{{baseUrl}}/reportes?fechaInicio=2022-02-01&fechaFin=2022-02-28&clienteId={{clienteId}}"
+          }
+        }
+      ]
+    }
+  ]
+}
