@@ -3,8 +3,8 @@ spring:
     name: banking-accounts-service
   datasource:
     url: ${DB_URL:jdbc:postgresql://localhost:5432/banking_accounts_db}
-    username: postgres
-    password: root
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:root}
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
@@ -30,7 +30,7 @@ server:
 
 customers:
   service:
-    base-url: http://localhost:8081/api
+    base-url: ${CUSTOMERS_SERVICE_URL:http://localhost:8081/api}
 
 messaging:
   customers:

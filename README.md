@@ -15,7 +15,7 @@ El proyecto existente usa Gradle y Spring Boot 4.1.2 con Java 21; se conserva es
 - RabbitMQ para procesar eventos.
 - Docker y Docker Compose para el despliegue en contenedores.
 
-La aplicación no crea otra base de datos. El `docker-compose.yaml` levanta RabbitMQ y el servicio; PostgreSQL y `banking-customers-service` se consideran dependencias externas configurables.
+La aplicación no crea otra base de datos. El Compose coordinado y sus instrucciones están en el README de la raíz del proyecto; PostgreSQL permanece en el host y `banking-customers-service` se inicia junto con Accounts.
 
 ## Configuración
 
@@ -26,7 +26,7 @@ La configuración está en `src/main/resources/application.yaml`. Variables:
 | `SERVER_PORT` | `8082` | Puerto HTTP |
 | `DB_URL` | `jdbc:postgresql://localhost:5432/banking_accounts_db` | URL de la base existente |
 | `DB_USERNAME` | `postgres` | Usuario PostgreSQL |
-| `DB_PASSWORD` | `postgres` | Contraseña PostgreSQL |
+| `DB_PASSWORD` | `root` | Contraseña PostgreSQL local |
 | `RABBITMQ_HOST` | `localhost` | Host RabbitMQ |
 | `RABBITMQ_PORT` | `5672` | Puerto AMQP |
 | `RABBITMQ_USERNAME` | `guest` | Usuario RabbitMQ |
@@ -51,14 +51,14 @@ La API queda en `http://localhost:8082/api`; el health check de Actuator está e
 
 ## Ejecución con Docker
 
-Configura `DB_URL`, `DB_USERNAME`, `DB_PASSWORD` y, si aplica, `CUSTOMERS_SERVICE_URL` en el entorno. En Windows/macOS la configuración predeterminada conecta con PostgreSQL y el servicio de clientes del host mediante `host.docker.internal`.
+Para el despliegue coordinado, sigue las instrucciones del README de la raíz y configura allí el archivo `.env`. En ejecución local fuera de Docker, los valores predeterminados conservan PostgreSQL y Customers en `localhost`.
 
 ```powershell
+Set-Location ..
 docker compose up --build
 ```
 
-RabbitMQ espera a estar saludable antes de iniciar la aplicación. PostgreSQL no se provisiona ni se recrea por Compose.
-Para desarrollo, Compose usa `accounts` como credencial local de RabbitMQ (RabbitMQ restringe el usuario `guest` a conexiones locales). Sustituye ambas credenciales mediante variables de entorno fuera del entorno de prueba.
+RabbitMQ espera a estar saludable antes de iniciar las aplicaciones; Accounts espera también a Customers. PostgreSQL no se provisiona ni se recrea por Compose. El Compose conecta Accounts a Customers mediante `http://banking-customers-service:8081/api`.
 
 ## API
 
