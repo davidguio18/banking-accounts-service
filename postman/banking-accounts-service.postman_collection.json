@@ -1,16 +1,11 @@
 {
   "info": {
-    "_postman_id": "f77c7439-bb55-4bb0-a7c9-46ae1b8c5c24",
+    "_postman_id": "2e6348fc-2437-4313-9376-d07604488030",
     "name": "banking-accounts-service",
     "description": "Operaciones CRUD/CRU, movimientos y reporte del microservicio de cuentas.",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57983859"
   },
-  "variable": [
-    { "key": "baseUrl", "value": "http://localhost:8082/api" },
-    { "key": "clienteId", "value": "2" },
-    { "key": "cuentaId", "value": "1" },
-    { "key": "movimientoId", "value": "1" }
-  ],
   "item": [
     {
       "name": "Cuentas",
@@ -19,40 +14,564 @@
           "name": "Crear cuenta",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"clienteId\": {{clienteId}},\n  \"saldoInicial\": 100.00\n}" },
-            "url": "{{baseUrl}}/cuentas"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"numeroCuenta\": \"225487002\",\n    \"tipoCuenta\": \"CORRIENTE\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 250000.00\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cuentas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"numeroCuenta\": \"225487001\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 100000.00\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "141"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 31 Oct 2026 22:32:49 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cuentaId\": 6,\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"clienteId\": 4,\n  \"saldoInicial\": 100000,\n  \"saldoActual\": 100000,\n  \"estado\": true\n}"
+            }
+          ]
         },
-        { "name": "Listar cuentas", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas" } },
-        { "name": "Listar cuentas por cliente", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas?clienteId={{clienteId}}" } },
-        { "name": "Consultar cuenta", "request": { "method": "GET", "url": "{{baseUrl}}/cuentas/{{cuentaId}}" } },
+        {
+          "name": "Listar cuentas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cuentas",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "2000 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "956"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:41:08 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"cuentaId\": 1,\n    \"numeroCuenta\": \"478758\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 1,\n    \"saldoInicial\": 2000,\n    \"saldoActual\": 1425,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 2,\n    \"numeroCuenta\": \"225487\",\n    \"tipoCuenta\": \"CORRIENTE\",\n    \"clienteId\": 2,\n    \"saldoInicial\": 100,\n    \"saldoActual\": 700,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 3,\n    \"numeroCuenta\": \"495878\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 3,\n    \"saldoInicial\": 0,\n    \"saldoActual\": 150,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 4,\n    \"numeroCuenta\": \"496825\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 2,\n    \"saldoInicial\": 540,\n    \"saldoActual\": 0,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 5,\n    \"numeroCuenta\": \"585545\",\n    \"tipoCuenta\": \"CORRIENTE\",\n    \"clienteId\": 1,\n    \"saldoInicial\": 1000,\n    \"saldoActual\": 1000,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 6,\n    \"numeroCuenta\": \"225487001\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 100000,\n    \"saldoActual\": 100000,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 7,\n    \"numeroCuenta\": \"225487002\",\n    \"tipoCuenta\": \"CORRIENTE\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 250000,\n    \"saldoActual\": 250000,\n    \"estado\": true\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Listar cuentas por cliente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cuentas?clienteId=4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas"
+              ],
+              "query": [
+                {
+                  "key": "clienteId",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas?clienteId=4",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas"
+                  ],
+                  "query": [
+                    {
+                      "key": "clienteId",
+                      "value": "4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "287"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sat, 31 Oct 2026 22:56:40 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"cuentaId\": 6,\n    \"numeroCuenta\": \"225487001\",\n    \"tipoCuenta\": \"AHORROS\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 100000,\n    \"saldoActual\": 100000,\n    \"estado\": true\n  },\n  {\n    \"cuentaId\": 7,\n    \"numeroCuenta\": \"225487002\",\n    \"tipoCuenta\": \"CORRIENTE\",\n    \"clienteId\": 4,\n    \"saldoInicial\": 250000,\n    \"saldoActual\": 250000,\n    \"estado\": true\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Consultar cuenta",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/cuentas/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas",
+                "6"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas/6",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    "6"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "141"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:43:08 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cuentaId\": 6,\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"AHORROS\",\n  \"clienteId\": 4,\n  \"saldoInicial\": 100000,\n  \"saldoActual\": 100000,\n  \"estado\": true\n}"
+            }
+          ]
+        },
         {
           "name": "Actualizar cuenta",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"numeroCuenta\": \"225487\",\n  \"tipoCuenta\": \"CORRIENTE\"\n}" },
-            "url": "{{baseUrl}}/cuentas/{{cuentaId}}"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"CORRIENTE\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cuentas/6",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas",
+                "6"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"CORRIENTE\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas/6",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    "6"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "143"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:44:57 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cuentaId\": 6,\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"clienteId\": 4,\n  \"saldoInicial\": 100000,\n  \"saldoActual\": 100000,\n  \"estado\": true\n}"
+            }
+          ]
         },
         {
           "name": "Desactivar cuenta",
           "request": {
             "method": "PATCH",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{ \"estado\": false }" },
-            "url": "{{baseUrl}}/cuentas/{{cuentaId}}/estado"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"estado\": false\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cuentas/6/estado",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas",
+                "6",
+                "estado"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"estado\": false\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas/6/estado",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    "6",
+                    "estado"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "144"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:50:34 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cuentaId\": 6,\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"clienteId\": 4,\n  \"saldoInicial\": 100000,\n  \"saldoActual\": 100000,\n  \"estado\": false\n}"
+            }
+          ]
         },
         {
           "name": "Activar cuenta",
           "request": {
             "method": "PATCH",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{ \"estado\": true }" },
-            "url": "{{baseUrl}}/cuentas/{{cuentaId}}/estado"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"estado\": true\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/cuentas/6/estado",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "cuentas",
+                "6",
+                "estado"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"estado\": true\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/cuentas/6/estado",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "cuentas",
+                    "6",
+                    "estado"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "143"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:55:18 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"cuentaId\": 6,\n  \"numeroCuenta\": \"225487001\",\n  \"tipoCuenta\": \"CORRIENTE\",\n  \"clienteId\": 4,\n  \"saldoInicial\": 100000,\n  \"saldoActual\": 100000,\n  \"estado\": true\n}"
+            }
+          ]
         }
       ]
     },
@@ -63,39 +582,540 @@
           "name": "Registrar depósito",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 600.00,\n  \"descripcion\": \"Depósito de prueba\"\n}" },
-            "url": "{{baseUrl}}/movimientos"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 600000.00,\n    \"descripcion\": \"Deposito de prueba\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/movimientos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "409 conflict",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 10000.00,\n    \"descripcion\": \"Prueba cuenta inactiva\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "187"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:52:30 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"timestamp\": \"2026-11-01T10:52:30.6045142-05:00\",\n  \"status\": 409,\n  \"error\": \"BUSINESS_RULE_VIOLATION\",\n  \"message\": \"No se permiten operaciones sobre una cuenta inactiva\",\n  \"path\": \"/api/movimientos\"\n}"
+            },
+            {
+              "name": "201 created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 600000.00,\n    \"descripcion\": \"Deposito de prueba\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "169"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 15:59:17 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"movimientoId\": 5,\n  \"cuentaId\": 6,\n  \"fecha\": \"2026-11-01T15:59:17.1127871Z\",\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 600000,\n  \"saldo\": 700000,\n  \"descripcion\": \"Deposito de prueba\"\n}"
+            }
+          ]
         },
         {
           "name": "Registrar retiro",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": -575.00,\n  \"descripcion\": \"Retiro de prueba\"\n}" },
-            "url": "{{baseUrl}}/movimientos"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -575000.00,\n    \"descripcion\": \"Retiro de prueba\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/movimientos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "201 created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -575000.00,\n    \"descripcion\": \"Retiro de prueba\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "165"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:16:44 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"movimientoId\": 6,\n  \"cuentaId\": 6,\n  \"fecha\": \"2026-11-01T16:16:44.6344515Z\",\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": -575000,\n  \"saldo\": 25000,\n  \"descripcion\": \"Retiro de prueba\"\n}"
+            }
+          ]
         },
         {
           "name": "Saldo insuficiente",
           "request": {
             "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"RETIRO\",\n  \"valor\": -999999.00,\n  \"descripcion\": \"Debe responder 422\"\n}" },
-            "url": "{{baseUrl}}/movimientos"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -999999.00,\n    \"descripcion\": \"Prueba de saldo insuficiente\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/movimientos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "422 Unprocessable",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -999999.00,\n    \"descripcion\": \"Prueba de saldo insuficiente\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "150"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:18:37 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"timestamp\": \"2026-11-01T11:18:37.4961959-05:00\",\n  \"status\": 422,\n  \"error\": \"SALDO_NO_DISPONIBLE\",\n  \"message\": \"Saldo no disponible\",\n  \"path\": \"/api/movimientos\"\n}"
+            }
+          ]
         },
-        { "name": "Listar movimientos", "request": { "method": "GET", "url": "{{baseUrl}}/movimientos" } },
-        { "name": "Consultar movimiento", "request": { "method": "GET", "url": "{{baseUrl}}/movimientos/{{movimientoId}}" } },
+        {
+          "name": "Listar movimientos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movimientos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "775"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:06:39 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n  {\n    \"movimientoId\": 1,\n    \"cuentaId\": 1,\n    \"fecha\": \"2022-02-10T14:00:00Z\",\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -575,\n    \"saldo\": 1425,\n    \"descripcion\": \"Retiro de 575\"\n  },\n  {\n    \"movimientoId\": 2,\n    \"cuentaId\": 2,\n    \"fecha\": \"2022-02-10T15:00:00Z\",\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 600,\n    \"saldo\": 700,\n    \"descripcion\": \"Deposito de 600\"\n  },\n  {\n    \"movimientoId\": 3,\n    \"cuentaId\": 3,\n    \"fecha\": \"2022-02-10T16:00:00Z\",\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 150,\n    \"saldo\": 150,\n    \"descripcion\": \"Deposito de 150\"\n  },\n  {\n    \"movimientoId\": 4,\n    \"cuentaId\": 4,\n    \"fecha\": \"2022-02-08T14:00:00Z\",\n    \"tipoMovimiento\": \"RETIRO\",\n    \"valor\": -540,\n    \"saldo\": 0,\n    \"descripcion\": \"Retiro de 540\"\n  },\n  {\n    \"movimientoId\": 5,\n    \"cuentaId\": 6,\n    \"fecha\": \"2026-11-01T15:59:17.112787Z\",\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 600000,\n    \"saldo\": 700000,\n    \"descripcion\": \"Deposito de prueba\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Consultar movimiento",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/movimientos/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos",
+                "5"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos/5",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos",
+                    "5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "168"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:01:20 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"movimientoId\": 5,\n  \"cuentaId\": 6,\n  \"fecha\": \"2026-11-01T15:59:17.112787Z\",\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 600000,\n  \"saldo\": 700000,\n  \"descripcion\": \"Deposito de prueba\"\n}"
+            }
+          ]
+        },
         {
           "name": "Actualizar movimiento",
           "request": {
             "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": { "mode": "raw", "raw": "{\n  \"cuentaId\": {{cuentaId}},\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 50.00,\n  \"descripcion\": \"Movimiento corregido\"\n}" },
-            "url": "{{baseUrl}}/movimientos/{{movimientoId}}"
-          }
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 500000.00,\n    \"descripcion\": \"Deposito corregido\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/movimientos/5",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "movimientos",
+                "5"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n    \"cuentaId\": 6,\n    \"tipoMovimiento\": \"DEPOSITO\",\n    \"valor\": 500000.00,\n    \"descripcion\": \"Deposito corregido\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/movimientos/5",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "movimientos",
+                    "5"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "168"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:14:16 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"movimientoId\": 5,\n  \"cuentaId\": 6,\n  \"fecha\": \"2026-11-01T15:59:17.112787Z\",\n  \"tipoMovimiento\": \"DEPOSITO\",\n  \"valor\": 500000,\n  \"saldo\": 600000,\n  \"descripcion\": \"Deposito corregido\"\n}"
+            }
+          ]
         }
       ]
     },
@@ -106,10 +1126,98 @@
           "name": "Reporte de estado de cuenta",
           "request": {
             "method": "GET",
-            "url": "{{baseUrl}}/reportes?fechaInicio=2022-02-01&fechaFin=2022-02-28&clienteId={{clienteId}}"
-          }
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/reportes?fechaInicio=2026-10-31&fechaFin=2026-11-01&clienteId=4",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reportes"
+              ],
+              "query": [
+                {
+                  "key": "fechaInicio",
+                  "value": "2026-10-31"
+                },
+                {
+                  "key": "fechaFin",
+                  "value": "2026-11-01"
+                },
+                {
+                  "key": "clienteId",
+                  "value": "4"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "200 ok",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/reportes?fechaInicio=2026-10-31&fechaFin=2026-11-01&clienteId=4",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportes"
+                  ],
+                  "query": [
+                    {
+                      "key": "fechaInicio",
+                      "value": "2026-10-31"
+                    },
+                    {
+                      "key": "fechaFin",
+                      "value": "2026-11-01"
+                    },
+                    {
+                      "key": "clienteId",
+                      "value": "4"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "550"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 01 Nov 2026 16:26:15 GMT"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=60"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n  \"clienteId\": 4,\n  \"fechaInicio\": \"2026-10-31\",\n  \"fechaFin\": \"2026-11-01\",\n  \"cuentas\": [\n    {\n      \"numeroCuenta\": \"225487002\",\n      \"tipoCuenta\": \"CORRIENTE\",\n      \"saldoInicial\": 250000,\n      \"saldoActual\": 250000,\n      \"estado\": true,\n      \"movimientos\": []\n    },\n    {\n      \"numeroCuenta\": \"225487001\",\n      \"tipoCuenta\": \"CORRIENTE\",\n      \"saldoInicial\": 100000,\n      \"saldoActual\": 25000,\n      \"estado\": true,\n      \"movimientos\": [\n        {\n          \"fecha\": \"2026-11-01T15:59:17.112787Z\",\n          \"tipoMovimiento\": \"DEPOSITO\",\n          \"valor\": 500000,\n          \"saldo\": 600000\n        },\n        {\n          \"fecha\": \"2026-11-01T16:16:44.634452Z\",\n          \"tipoMovimiento\": \"RETIRO\",\n          \"valor\": -575000,\n          \"saldo\": 25000\n        }\n      ]\n    }\n  ]\n}"
+            }
+          ]
         }
       ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8082/api"
     }
   ]
 }
